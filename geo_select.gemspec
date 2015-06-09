@@ -6,11 +6,11 @@ require 'geo_select/version'
 Gem::Specification.new do |spec|
   spec.name          = "geo_select"
   spec.version       = GeoSelect::VERSION
-  spec.authors       = ["Divyansh"]
-  spec.email         = ["divyansh.kumar@cryptextechnologies.com"]
+  spec.authors       = ["Divyansh Kumar"]
+  spec.email         = ["mr.divyanshindore@gmail.com"]
   spec.summary       = %q{TODO: Write a short summary. Required.}
   spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/mrdivyansh/geo_select"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
