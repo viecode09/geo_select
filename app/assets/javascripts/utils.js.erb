@@ -1,6 +1,21 @@
 window.geoSelect = {
+  selectFieldOrder: ["geo-countries", "geo-states", "geo-regions", "geo-cities"],
+
   wipeData: function (geonameObj) {
     return [geonameObj["name"], geonameObj["geonameId"]];
+  },
+
+  childDisabler: function (element) {
+    var disabled = element.options.length < 2;
+    var indexOfSelect = this.selectFieldOrder.indexOf(element.getAttribute('class'));
+    for (var i = indexOfSelect; i < this.selectFieldOrder.length; i++){
+      var element = $("." + this.selectFieldOrder[i]);
+      if(disabled)
+        element.html("<option value=''>No Data Available</option");
+      else if(indexOfSelect != i)
+        element.html("<option value=''>Waiting...</option>");
+      element.attr("disabled", disabled);
+    }
   },
 
   addOptions: function (element, data) {
@@ -11,10 +26,7 @@ window.geoSelect = {
       element.options[element.options.length] = new Option(data[i][0], data[i][0])
       element.options[element.options.length-1].setAttribute('geo-code', data[i][1]);
     }
-    if(element.options.length < 2)
-      element.setAttribute("disabled", "disabled");
-    else
-      element.removeAttribute("disabled");
+    this.childDisabler(element);
   },
 
   readCountries: function (element, variableName) {
@@ -38,8 +50,9 @@ window.geoSelect = {
     else if(classValue == "geo-regions")
       elementsClass = "geo-cities";
     $.getJSON("http://www.geonames.org/childrenJSON?geonameId=" + selectedOption.getAttribute('geo-code'), function(data){
+      var optionsData = data["geonames"] ? data["geonames"].map(window.geoSelect.wipeData).sort() : [];
       $("." + elementsClass).each(function () {
-        window.geoSelect.addOptions(this, data["geonames"].map(window.geoSelect.wipeData).sort());
+        window.geoSelect.addOptions(this, optionsData);
       });
     });
   }
