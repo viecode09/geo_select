@@ -1,4 +1,4 @@
-[
+window.geoSelect.sort = [
   ["Antarctica",6697173],
   ["Bouvet Island",3371123],
   ["French Southern Territories",1546748],

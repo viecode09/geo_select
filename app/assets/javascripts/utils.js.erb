@@ -1,0 +1,45 @@
+window.geoSelect = {
+  wipeData: function (geonameObj) {
+    return [geonameObj["name"], geonameObj["geonameId"]];
+  },
+
+  addOptions: function (element, data) {
+    element.options.length = 0;
+    var firstOptionHTML = (data.length > 0) ? (element.getAttribute('geo-default-option-HTML') || 'Select') : 'No Data Available';
+    element.options[element.options.length] = new Option(firstOptionHTML, element.getAttribute('geo-default-option-value') || '');
+    for(var i = 0; i < data.length; i++){
+      element.options[element.options.length] = new Option(data[i][0], data[i][0])
+      element.options[element.options.length-1].setAttribute('geo-code', data[i][1]);
+    }
+    if(element.options.length < 2)
+      element.setAttribute("disabled", "disabled");
+    else
+      element.removeAttribute("disabled");
+  },
+
+  readCountries: function (element, variableName) {
+    this.addOptions(element, eval("window.geoSelect." + variableName));
+  },
+
+  setCountryList: function (element) {
+    var variableName = (element.getAttribute('geo-sort') != undefined && element.getAttribute('geo-sort').toUpperCase == 'CONTINENT') ? 'sort' : 'unSort';
+    this.readCountries(element, variableName);
+  },
+
+  listChildren: function (element) {
+    var selectedOption = element.options[element.selectedIndex];
+    var classValue = selectedOption.parentElement.getAttribute('class');
+    var elementsClass = null;
+    if (classValue == "geo-countries")
+      elementsClass = "geo-states";
+    else if (classValue == "geo-states")
+      elementsClass = "geo-regions";
+    else if(classValue == "geo-regions")
+      elementsClass = "geo-cities";
+    $.getJSON("http://www.geonames.org/childrenJSON?geonameId=" + selectedOption.getAttribute('geo-code'), function(data){
+      $("." + elementsClass).each(function () {
+        window.geoSelect.addOptions(this, data["geonames"].map(window.geoSelect.wipeData).sort());
+      });
+    });
+  }
+};
