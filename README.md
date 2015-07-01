@@ -21,7 +21,7 @@ Or install it yourself as:
 Must Add to application.js:
 
   ```ruby
-    //= require geo_select
+  //= require geo_select
   ```
 
 ## Usage
