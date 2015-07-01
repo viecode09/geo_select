@@ -29,16 +29,16 @@ Must Add to application.js:
 ```ruby
 <%= form_tag("/site/index") do %>
   <%= label_tag 'name' %>
-  <%= select_tag(:country, [], { class: 'geo-countries'}) %>
+  <%= select_tag(:country, nil, { class: 'geo-countries'}) %>
 
   <%= label_tag 'name' %>
-  <%= select_tag(:state, [], { class: 'geo-states' }) %>
+  <%= select_tag(:state, nil, { class: 'geo-states' }) %>
 
   <%= label_tag 'name' %>
-  <%= select_tag(:region, [], { class: 'geo-regions' }) %>
+  <%= select_tag(:region, nil, { class: 'geo-regions' }) %>
 
   <%= label_tag 'name' %>
-  <%= select_tag(:city, [], { class: 'geo-cities' }) %>
+  <%= select_tag(:city, nil, { class: 'geo-cities' }) %>
 <% end %>
 ```
 
