@@ -1,6 +1,6 @@
 # GeoSelect
 
-TODO: Write a gem description
+GeoSelect helps to auto-populate countries, states, regions and cities options to your select_tag form helper. It is based on http://geonames.org services.
 
 ## Installation
 
@@ -18,13 +18,33 @@ Or install it yourself as:
 
     $ gem install geo_select
 
+Must Add to application.js:
+
+  ```ruby
+    //= require geo_select
+  ```
+
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+<%= form_tag("/site/index") do %>
+  <%= label_tag 'name' %>
+  <%= select_tag(:country, [], { class: 'geo-countries'}) %>
+
+  <%= label_tag 'name' %>
+  <%= select_tag(:state, [], { class: 'geo-states' }) %>
+
+  <%= label_tag 'name' %>
+  <%= select_tag(:region, [], { class: 'geo-regions' }) %>
+
+  <%= label_tag 'name' %>
+  <%= select_tag(:city, [], { class: 'geo-cities' }) %>
+<% end %>
+```
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/geo_select/fork )
+1. Fork it ( https://github.com/mrdivyansh/geo_select/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

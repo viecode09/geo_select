@@ -18,11 +18,12 @@ window.geoSelect = {
   },
 
   readCountries: function (element, variableName) {
-    this.addOptions(element, eval("window.geoSelect." + variableName));
+    var evalString = (variableName == "sort") ? "window.geoSelect.unSort.sort()" : "window.geoSelect.unSort";
+    this.addOptions(element, eval(evalString));
   },
 
   setCountryList: function (element) {
-    var variableName = (element.getAttribute('geo-sort') != undefined && element.getAttribute('geo-sort').toUpperCase == 'CONTINENT') ? 'sort' : 'unSort';
+    var variableName = (element.getAttribute('geo-sort') != undefined && element.getAttribute('geo-sort').toUpperCase() == 'CONTINENT') ? 'unSort' : 'sort';
     this.readCountries(element, variableName);
   },
 
