@@ -8,8 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = GeoSelect::VERSION
   spec.authors       = ["Divyansh Kumar"]
   spec.email         = ["mr.divyanshindore@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{GeoSelect helps to auto-populate countries, states, regions and cities options to your select_tag form helper. It is based on http://geonames.org services.}
   spec.homepage      = "https://github.com/mrdivyansh/geo_select"
   spec.license       = "MIT"
 
