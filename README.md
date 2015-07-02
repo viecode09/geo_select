@@ -42,6 +42,14 @@ Must Add to application.js:
 <% end %>
 ```
 
+##Setup Event
+
+```javascript
+document.addEventListener('geoLoadingStart', function (e) { alert("loading..."); }, false);
+document.addEventListener('geoLoadingEnd', function (e) { alert("loaded"); }, false);
+```
+
+
 ## Contributing
 
 1. Fork it ( https://github.com/mrdivyansh/geo_select/fork )

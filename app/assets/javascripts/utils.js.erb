@@ -46,17 +46,17 @@ window.geoSelect = {
 
   listChildren: function (element) {
     var elementsClass = null;
+    var selectedOption = element.options[element.selectedIndex];
+    var classValue = selectedOption.parentElement.getAttribute('class');
     if (classValue == "geo-countries")
       elementsClass = "geo-states";
     else if (classValue == "geo-states")
       elementsClass = "geo-regions";
     else if(classValue == "geo-regions")
       elementsClass = "geo-cities";
-    var startEvent = new CustomEvent('geoLoadingStart', { 'fetch': elementsClass });
+    var startEvent = new CustomEvent('geoLoadingStart');
     document.dispatchEvent(startEvent);
-    var endEvent = new CustomEvent('geoLoadingEnd', { 'fetch': elementsClass });
-    var selectedOption = element.options[element.selectedIndex];
-    var classValue = selectedOption.parentElement.getAttribute('class');
+    var endEvent = new CustomEvent('geoLoadingEnd');
     $.getJSON("http://www.geonames.org/childrenJSON?geonameId=" + selectedOption.getAttribute('geo-code'), function(data){
       var optionsData = data["geonames"] ? data["geonames"].map(window.geoSelect.wipeData).sort() : [];
       $("." + elementsClass).each(function () {
